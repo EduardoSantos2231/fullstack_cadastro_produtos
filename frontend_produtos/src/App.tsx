@@ -11,6 +11,7 @@ function App() {
     const [productToSearch, setProductToSearch] = useState("")
     const [foundProducts, setFoundProducts] = useState<ProductType[]>([])
     const [isVisible, setIsVisible] = useState(false)
+    const [productName, setProductName] = useState("")
 
     useEffect(()=>{
       const fetchProducts = async ()=> {
@@ -25,10 +26,14 @@ function App() {
         }
       }
       fetchProducts()
-    }, [])
+    }, [products])
 
     const changeVisibilityPopUp = ()=>{
       setIsVisible((prev)=> !prev)
+    }
+
+    const createProduct = async ()=>{
+      
     }
 
     const searchForProduct = async()=>{
@@ -68,7 +73,7 @@ function App() {
               <span className="justify-between flex items-center gap-2 my-4">
                 <input value={productToSearch} onChange={(e)=> setProductToSearch(e.target.value)}
                  type="search" placeholder="Informe um nome" className="border p-2" />
-                <button onClick={searchForProduct}>Buscar</button>
+                <button onClick={searchForProduct} className="bg-slate-300 p-2 cursor-pointer">Buscar</button>
               </span>
 
             </header>
@@ -76,9 +81,18 @@ function App() {
             <main className="flex justify-center  flex-col gap-3">
 
               <div className="flex flex-row gap-2">
-                <input type="text" className="border p-1 max-w-30" placeholder="Seu item"/>
-                <input type="number" className="border p-1 max-w-30" placeholder="Quantidade"/>
-                <button className="p-2 bg-slate-500 cursor-pointer rounded-sm">Criar</button>
+
+                <input value={productName}
+                  onChange={(e)=> setProductName(e.target.value)}
+                  type="text" className="border p-1 max-w-30"
+                  placeholder="Seu item"/>
+
+                <input type="number"
+                 className="border p-1 max-w-30"
+                 placeholder="Quantidade"/>
+
+                <button 
+                 className="p-2 bg-slate-500 cursor-pointer rounded-sm">Criar</button>
               </div>
 
               <div className="flex flex-col gap-4">
