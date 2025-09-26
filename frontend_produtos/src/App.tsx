@@ -37,7 +37,7 @@ function App() {
       if (!productName || !onStock) return
       const productCreated = await createProduct({name: productName, onStock: onStock})
       setProductName("")
-      setOnStock((prev)=> prev-prev)
+      setOnStock(1)
     }
 
     const searchForProduct = async()=>{
@@ -92,6 +92,8 @@ function App() {
                   placeholder="Seu item"/>
 
                 <input type="number"
+                value={onStock}
+                 min={1}
                  onChange={(e)=> setOnStock(Number(e.target.value))}
                  className="border p-1 max-w-30"
                  placeholder="Quantidade"/>
