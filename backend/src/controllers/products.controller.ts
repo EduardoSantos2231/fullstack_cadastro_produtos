@@ -18,7 +18,7 @@ export const productsController =  {
             const {name} = req.params
             if (!name) return res.json({message: "You need a name to look for"})
             const product = await prisma.product.findMany({where: {name: {
-                                                           startsWith: name,
+                                                           contains: name,
                                                            mode: 'insensitive'}}})
             if (!product) return res.status(400).json({erro: "Product not found"})
             res.status(200).json(product)
