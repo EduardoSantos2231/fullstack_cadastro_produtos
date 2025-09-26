@@ -13,3 +13,8 @@ export const getProductUsingName = async (name: string): Promise<ProductType[]>=
     const response= await axios.get(`${API_URL}/getone/${name}`).then((res)=> res.data)
     return response
 }
+
+export const createProduct = async({name, onStock}: ProductType)=>{
+    const createdProduct = await axios.post(`${API_URL}/create`, {name, onStock})
+    return createdProduct
+}

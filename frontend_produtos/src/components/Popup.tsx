@@ -8,7 +8,7 @@ export default function Popup({isVisible, onClose, info}: PopUpType) {
             <div className="min-w-full min-h-full bg-black/85 z-10 fixed">
                 <div className="flex justify-center items-center flex-col bg-white p-7">
                     <div className="">Produto não encontrado</div>
-                    <button onClick={onClose}>close</button>
+                    <button onClick={onClose} className="bg-slate-400 p-2 rounded-sm">close</button>
                 </div>
             </div>
         )

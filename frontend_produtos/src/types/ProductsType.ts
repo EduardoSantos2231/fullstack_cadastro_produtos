@@ -1,5 +1,5 @@
 export default interface ProductType{
-    id: number
+    id?: number
     name: string
     onStock: number
     createdAt?: string

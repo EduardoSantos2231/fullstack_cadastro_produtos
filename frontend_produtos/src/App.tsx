@@ -1,7 +1,7 @@
 import {useEffect, useState } from "react"
 import type ProductType from "./types/ProductsType"
 import ProductContainer from "./components/ProductContainer"
-import { getProducts, getProductUsingName } from "./api/products"
+import { createProduct, getProducts, getProductUsingName } from "./api/products"
 import Popup from "./components/Popup"
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
     const [foundProducts, setFoundProducts] = useState<ProductType[]>([])
     const [isVisible, setIsVisible] = useState(false)
     const [productName, setProductName] = useState("")
+    const [onStock, setOnStock] = useState(0)
 
     useEffect(()=>{
       const fetchProducts = async ()=> {
@@ -32,8 +33,11 @@ function App() {
       setIsVisible((prev)=> !prev)
     }
 
-    const createProduct = async ()=>{
-      
+    const create = async()=>{
+      if (!productName || !onStock) return
+      const productCreated = await createProduct({name: productName, onStock: onStock})
+      setProductName("")
+      setOnStock((prev)=> prev-prev)
     }
 
     const searchForProduct = async()=>{
@@ -88,10 +92,12 @@ function App() {
                   placeholder="Seu item"/>
 
                 <input type="number"
+                 onChange={(e)=> setOnStock(Number(e.target.value))}
                  className="border p-1 max-w-30"
                  placeholder="Quantidade"/>
 
-                <button 
+                <button
+                 onClick={create} 
                  className="p-2 bg-slate-500 cursor-pointer rounded-sm">Criar</button>
               </div>
 
