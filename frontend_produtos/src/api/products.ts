@@ -15,6 +15,11 @@ export const getProductUsingName = async (name: string): Promise<ProductType[]>=
 }
 
 export const createProduct = async({name, onStock}: ProductType)=>{
-    const createdProduct = await axios.post(`${API_URL}/create`, {name, onStock})
+    const createdProduct = await axios.post(`${API_URL}/create`, {name, onStock}).then((res)=> res.data)
     return createdProduct
+}
+
+export const deleteProduct = async(id: number)=>{
+    const deletedProduct = await axios.delete(`${API_URL}/delete/${id}`).then((res)=> res.data)
+    return deletedProduct
 }

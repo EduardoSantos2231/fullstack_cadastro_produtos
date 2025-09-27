@@ -35,7 +35,7 @@ function App() {
 
     const create = async()=>{
       if (!productName || !onStock) return
-      const productCreated = await createProduct({name: productName, onStock: onStock})
+      const productCreated = await createProduct({name: productName, onStock: onStock, id: 0})
       setProductName("")
       setOnStock(1)
     }
