@@ -58,7 +58,6 @@ O **Prisma** é utilizado para facilitar a comunicação com o banco de dados, f
 │   ├── src/
 │   │   ├── App.tsx           # Componente principal
 │   │   ├── components/       # Componentes reutilizáveis
-│   │   └── pages/            # Páginas da aplicação
 │   └── package.json
 │
 └── prisma/
