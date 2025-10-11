@@ -47,21 +47,24 @@ O **Prisma** é utilizado para facilitar a comunicação com o banco de dados, f
 ```
 📦 fullstack_cadastro_produtos/
 ├── 📁 backend/
+|   ├── prisma/               # Configuração do schema e conexão url do prisma
 │   ├── src/
-│   │   ├── index.ts          # Ponto de entrada do servidor Express
+│   │   ├── server.ts         # Ponto de entrada do servidor Express
 │   │   ├── routes/           # Rotas da aplicação
 │   │   ├── controllers/      # Lógica de CRUD
-│   │   └── prisma/           # Instância e configuração do Prisma
+|   |   ├── @types/           # Tipos do projeto
+|   |   ├── configs/          # Instância única da conexão do prisma
 │   └── package.json
 │
 ├── 📁 frontend_produtos/
 │   ├── src/
 │   │   ├── App.tsx           # Componente principal
 │   │   ├── components/       # Componentes reutilizáveis
+|   |   ├── api/              # Chamadas ao backend
+|   |   ├── types/            # Tipos do projeto
 │   └── package.json
 │
-└── prisma/
-    └── schema.prisma         # Modelagem do banco de dados
+
 ```
 
 ---
