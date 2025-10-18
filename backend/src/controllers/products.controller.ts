@@ -37,9 +37,8 @@ export const productsController = {
       if (name && onStock) {
         const addedProduct = await prisma.product.create({
           data: {
-            name: name,
-            onStock: onStock,
-            createdAt: new Date().toLocaleString('pt-BR', {timeZone: 'America/Sao_Paulo', dateStyle: "short"})
+            name,
+            onStock,
           },
         });
         return res.status(201).json(addedProduct);

@@ -17,7 +17,7 @@ model Product{
   id Int @id @unique @default(autoincrement())
   name String 
   createdAt DateTime @default(now())
-  updatedAt DateTime? @default(now())
+  updatedAt DateTime @updatedAt
   onStock Int
 }
 

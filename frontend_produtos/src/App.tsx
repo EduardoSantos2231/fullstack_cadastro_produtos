@@ -17,7 +17,8 @@ function App() {
   const [isVisible, setIsVisible] = useState(false);
   const [productName, setProductName] = useState("");
   const [onStock, setOnStock] = useState(0);
-
+  const [productsWereChanged, setProductsWereChanged] = useState(false)
+  
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -31,7 +32,11 @@ function App() {
       }
     };
     fetchProducts();
-  }, [products]);
+  }, [productsWereChanged]);
+  
+  const changeProductsWereChanged =()=>{
+    setProductsWereChanged((prev)=> !prev)
+  }
 
   const changeVisibilityPopUp = () => {
     setIsVisible((prev) => !prev);
@@ -46,6 +51,7 @@ function App() {
     });
     setProductName("");
     setOnStock(1);
+    changeProductsWereChanged()
   };
 
   const searchForProduct = async () => {
@@ -73,7 +79,7 @@ function App() {
     return (
       <div className="flex min-h-dvh flex-col mx-5">
         <header className="min-w-full flex flex-col items-center">
-          <h1 className="my-4 bg-linear-to-r from-indigo-300 via-indigo-400 to-purple-400 bg-clip-text text-transparent text-3xl font-semibold">
+          <h1 className="my-4 bg-linear-to-r text-3xl font-semibold">
             Produtos
           </h1>
 
@@ -82,7 +88,6 @@ function App() {
             onClose={changeVisibilityPopUp}
             info={foundProducts}
           />
-
           <span className="justify-between flex items-center gap-2 my-4">
             <input
               value={productToSearch}
@@ -134,6 +139,7 @@ function App() {
                 id={item.id}
                 name={item.name}
                 onStock={item.onStock}
+                refresher={changeProductsWereChanged}
               />
             ))}
           </div>

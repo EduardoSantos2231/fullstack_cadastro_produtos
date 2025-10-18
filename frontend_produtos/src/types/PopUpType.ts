@@ -5,3 +5,4 @@ export default interface PopUpType {
   onClose: () => void;
   info?: ProductType[];
 }
+

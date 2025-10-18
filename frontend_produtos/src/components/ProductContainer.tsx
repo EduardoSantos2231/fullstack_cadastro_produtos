@@ -1,11 +1,19 @@
+import { useState } from "react";
 import { deleteProduct } from "../actions/products";
 import type ProductType from "../types/ProductsType";
 import { CiEdit } from "react-icons/ci";
+import EditPopup from "./EditPopup";
 
-export default function ProductContainer({name, onStock, id}: ProductType) {
+export default function ProductContainer({name, onStock, id, refresher}: ProductType) {
+  const [isEditing, setIsEditing] = useState(false)
+  const deleteSingleOne = async ()=>{
+    await deleteProduct(id)
+    if (refresher) refresher()
+  }
+  const changeIsEditing = ()=> setIsEditing((prev)=> !prev)
   return (
     <div className="flex min-w-full justify-between flex-col bg-blue-200/30 rounded-sm p-2">
-
+      <EditPopup isVisible={isEditing} onClose={changeIsEditing} product={{id: id, name: name, onStock: onStock}}/>
         <div className="flex gap-4 p-4"> 
             <h1 className="bg-blue-400/20 p-2 rounded-sm">{name}</h1> 
    
@@ -13,8 +21,8 @@ export default function ProductContainer({name, onStock, id}: ProductType) {
         </div>
 
         <span className="justify-end flex gap-3">
-            <button className="flex items-center gap-1 p-2 hover:scale-110 duration-200 transition cursor-pointer rounded-sm bg-yellow-200"><CiEdit />Editar</button>
-            <button className="flex items-center gap-1 p-2 hover:scale-110 duration-200 transition cursor-pointer rounded-sm" onClick={()=> deleteProduct(id)}>Deletar</button>
+            <button className="flex items-center gap-1 p-2 hover:scale-110 duration-200 transition cursor-pointer rounded-sm bg-yellow-200" onClick={changeIsEditing}><CiEdit />Editar</button>
+            <button className="flex items-center gap-1 p-2 hover:scale-110 duration-200 transition cursor-pointer rounded-sm" onClick={deleteSingleOne}>Deletar</button>
         </span>
     </div>
   )

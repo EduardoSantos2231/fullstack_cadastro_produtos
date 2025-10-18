@@ -14,7 +14,7 @@ export default function Popup({isVisible, onClose, info}: PopUpType) {
         )
     }
     return (
-        <div className="min-w-full min-h-full bg-black/85 z-10 fixed">
+        <div className="min-w-full min-h-full bg-black/90 z-10 fixed">
             <div className="flex flex-col gap-3 p-4">
             {info.map((product)=> (
                 <ProductContainer name={product.name} onStock={product.onStock} key={product.id} id={product.id}/>
