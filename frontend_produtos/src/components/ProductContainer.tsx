@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { deleteProduct } from "../actions/products";
 import type ProductType from "../types/ProductsType";
 import { CiEdit } from "react-icons/ci";
@@ -10,6 +10,10 @@ export default function ProductContainer({name, onStock, id, refresher}: Product
     await deleteProduct(id)
     if (refresher) refresher()
   }
+  useEffect(()=>{
+    if (refresher)
+    refresher()
+  }, [isEditing])
   const changeIsEditing = ()=> setIsEditing((prev)=> !prev)
   return (
     <div className="flex min-w-full justify-between flex-col bg-blue-200/30 rounded-sm p-2">

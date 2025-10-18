@@ -12,5 +12,5 @@ app.use(express.json())
 app.use(router)
 
 app.listen(port, ()=>{
-    console.log(`running on http://localhost:${port}/`)
+    console.log(`running on http://localhost:${port}/products`)
 })

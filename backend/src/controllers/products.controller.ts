@@ -82,10 +82,6 @@ export const productsController = {
         data: {
           name: newName,
           onStock: newOnStock,
-          updatedAt: new Date().toLocaleDateString("pt-BR", {
-            timeZone: "America/Sao_Paulo",
-            dateStyle: "short",
-          }),
         },
       });
 
