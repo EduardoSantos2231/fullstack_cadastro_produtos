@@ -1,7 +1,7 @@
-import type ProductType from "./ProductsType"
+import type ProductType from "./ProductsType";
 
-export default interface PopUpType{
-    isVisible: boolean
-    onClose: ()=> void
-    info? : ProductType[]
+export default interface PopUpType {
+  isVisible: boolean;
+  onClose: () => void;
+  info?: ProductType[];
 }
