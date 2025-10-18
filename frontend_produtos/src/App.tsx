@@ -5,7 +5,7 @@ import {
   createProduct,
   getProducts,
   getProductUsingName,
-} from "./api/products";
+} from "./actions/products";
 import Popup from "./components/Popup";
 
 function App() {

@@ -4,9 +4,8 @@ import cors from "cors"
 const port = process.env.PORT || 8080
 const app = express()
 
-const cosrOptions = {origin: process.env.ALLOWED_URL}
 
-app.use(cors(cosrOptions))
+app.use(cors({origin: "http://localhost:5173", allowedHeaders: ["Access-Control-Allow-Origin"]}))
 app.use(express.json())
 
 app.use(router)

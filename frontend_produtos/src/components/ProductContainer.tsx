@@ -1,4 +1,4 @@
-import { deleteProduct } from "../api/products";
+import { deleteProduct } from "../actions/products";
 import type ProductType from "../types/ProductsType";
 
 
