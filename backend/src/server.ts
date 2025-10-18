@@ -4,8 +4,9 @@ import cors from "cors"
 const port = process.env.PORT || 8080
 const app = express()
 
+//por ser uma aplicação remota, não inclui domínios e métodos que serão aceitos
+app.use(cors())
 
-app.use(cors({origin: "http://localhost:5173", allowedHeaders: ["Access-Control-Allow-Origin"]}))
 app.use(express.json())
 
 app.use(router)
