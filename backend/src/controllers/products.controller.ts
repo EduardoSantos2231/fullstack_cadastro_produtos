@@ -39,6 +39,7 @@ export const productsController = {
           data: {
             name: name,
             onStock: onStock,
+            createdAt: new Date().toLocaleString('pt-BR', {timeZone: 'America/Sao_Paulo', dateStyle: "short"})
           },
         });
         return res.status(201).json(addedProduct);
@@ -79,7 +80,14 @@ export const productsController = {
 
       const updatedProduct = await prisma.product.update({
         where: { id: Number(id) },
-        data: { name: newName, onStock: newOnStock },
+        data: {
+          name: newName,
+          onStock: newOnStock,
+          updatedAt: new Date().toLocaleDateString("pt-BR", {
+            timeZone: "America/Sao_Paulo",
+            dateStyle: "short",
+          }),
+        },
       });
 
       return res.json({ message: "success", updatedProduct });

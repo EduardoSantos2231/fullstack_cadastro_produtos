@@ -23,3 +23,8 @@ export const deleteProduct = async(id: number)=>{
     const deletedProduct = await axios.delete(`${API_URL}/delete/${id}`).then((res)=> res.data)
     return deletedProduct
 }
+
+export const editProduct = async({id, name, onStock}:ProductType)=>{
+  const updatedProduct = await axios.put(`${API_URL}/update/${id}`, { newName: name, newOnStock: onStock }).then((res)=> res.data)
+  return updatedProduct
+}
