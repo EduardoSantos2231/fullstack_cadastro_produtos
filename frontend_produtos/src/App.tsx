@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type ProductType from "./types/ProductsType";
 import ProductContainer from "./components/ProductContainer";
+import { GoSearch } from "react-icons/go";
 import {
   createProduct,
   getProducts,
@@ -91,19 +92,19 @@ function App() {
             onClose={changeVisibilityPopUp}
             info={foundProducts}
           />
-          <span className="justify-between flex items-center gap-2 my-4">
+          <span className="justify-between flex items-center my-4">
             <input
               value={productToSearch}
               onChange={(e) => setProductToSearch(e.target.value)}
               type="search"
               placeholder="Informe um nome"
-              className="border p-2"
+              className="border p-2 rounded-l-sm"
             />
             <button
               onClick={searchForProduct}
-              className="bg-slate-300 p-2 cursor-pointer"
+              className="bg-blue-200/50 p-3 text-lg cursor-pointer rounded-r-sm flex items-center gap-1"
             >
-              Buscar
+               <GoSearch />
             </button>
           </span>
         </header>
@@ -114,7 +115,7 @@ function App() {
               value={productName}
               onChange={(e) => setProductName(e.target.value)}
               type="text"
-              className="border p-1 max-w-30"
+              className="border p-1 max-w-30 rounded-sm"
               placeholder="Seu item"
             />
 
@@ -123,13 +124,13 @@ function App() {
               value={onStock}
               min={1}
               onChange={(e) => setOnStock(Number(e.target.value))}
-              className="border p-1 max-w-30"
+              className="border p-1 max-w-30 rounded-sm"
               placeholder="Quantidade"
             />
 
             <button
               onClick={create}
-              className="p-2 bg-slate-500 cursor-pointer rounded-sm"
+              className="p-2 bg-green-500/30 cursor-pointer rounded-sm hover:scale-110 duration-200 transition"
             >
               Criar
             </button>
