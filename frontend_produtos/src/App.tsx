@@ -98,7 +98,7 @@ function App() {
               onChange={(e) => setProductToSearch(e.target.value)}
               type="search"
               placeholder="Informe um nome"
-              className="border p-2 rounded-l-sm"
+              className="border p-2 rounded-l-lg"
             />
             <button
               onClick={searchForProduct}
