@@ -4,5 +4,4 @@ export default interface ProductType {
   onStock: number;
   createdAt?: string;
   UpdatedAt?: string;
-  refresher?: ()=> void
 }

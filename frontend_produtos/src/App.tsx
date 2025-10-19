@@ -6,7 +6,8 @@ import {
   getProducts,
   getProductUsingName,
 } from "./actions/products";
-import Popup from "./components/Popup";
+import Popup from "./components/SearchPopup";
+import { ProductProvider } from "./contexts/productsContext";
 
 function App() {
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -77,6 +78,8 @@ function App() {
 
   if (!loading) {
     return (
+      <ProductProvider value={{refresher: changeProductsWereChanged}}>
+        
       <div className="flex min-h-dvh flex-col mx-5">
         <header className="min-w-full flex flex-col items-center">
           <h1 className="my-4 bg-linear-to-r text-3xl font-semibold">
@@ -139,12 +142,12 @@ function App() {
                 id={item.id}
                 name={item.name}
                 onStock={item.onStock}
-                refresher={changeProductsWereChanged}
               />
             ))}
           </div>
         </main>
       </div>
+      </ProductProvider>
     );
   }
   return <div>Carregando...</div>;

@@ -3,18 +3,19 @@ import { deleteProduct } from "../actions/products";
 import type ProductType from "../types/ProductsType";
 import { CiEdit } from "react-icons/ci";
 import EditPopup from "./EditPopup";
+import { useProductContext } from "../contexts/productsContext";
 
-export default function ProductContainer({name, onStock, id, refresher}: ProductType) {
+export default function ProductContainer({name, onStock, id}: ProductType) {
+  const {refresher} = useProductContext()
   const [isEditing, setIsEditing] = useState(false)
   const deleteSingleOne = async ()=>{
     await deleteProduct(id)
-    if (refresher) refresher()
+    refresher()
   }
+  const changeIsEditing = ()=> setIsEditing((prev)=> !prev)
   useEffect(()=>{
-    if (refresher)
     refresher()
   }, [isEditing])
-  const changeIsEditing = ()=> setIsEditing((prev)=> !prev)
   return (
     <div className="flex min-w-full justify-between flex-col bg-blue-200/30 rounded-sm p-2">
       <EditPopup isVisible={isEditing} onClose={changeIsEditing} product={{id: id, name: name, onStock: onStock}}/>

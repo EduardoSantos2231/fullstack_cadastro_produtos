@@ -1,17 +1,21 @@
 import {useState } from "react";
 import type { EditPopup } from "../types";
 import { editProduct } from "../actions/products";
+import { useProductContext } from "../contexts/productsContext";
 
 export default function EditPopup({ onClose, product, isVisible }: EditPopup) {
   const { name, onStock, id} = product;
   const [newName, setNewName] = useState(name);
   const [newOnStock, setNewOnStock] = useState(onStock);
   
+  const {refresher} = useProductContext()
+  
   const updateInfos = async()=>{
     await editProduct({id: id, name: newName, onStock: newOnStock})
     onClose()
+    refresher()
   }
-    
+  
   if (!isVisible) return;
   return (
     <div className="bg-black/90 inset-0 absolute">
