@@ -15,6 +15,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<undefined | Error>(undefined);
   const [productToSearch, setProductToSearch] = useState("");
+  const [lastSearchedItem, setLastSearchedItem] = useState('')
   const [foundProducts, setFoundProducts] = useState<ProductType[]>([]);
   const [isVisible, setIsVisible] = useState(false);
   const [productName, setProductName] = useState("");
@@ -39,6 +40,18 @@ function App() {
   const changeProductsWereChanged = useCallback(()=>{
     setProductsWereChanged((prev)=> !prev)
   }, [])
+  
+  const reloadSearchPopup = useCallback(async () => {
+      if (isVisible && lastSearchedItem) {
+          try {
+              const products = await getProductUsingName(lastSearchedItem);
+              setFoundProducts(products); 
+              console.log("Popup de busca recarregado com sucesso!");
+          } catch (error) {
+              console.error("Erro ao recarregar popup de busca:", error);
+          }
+      }
+  }, [isVisible, lastSearchedItem]);
 
   const changeVisibilityPopUp = () => {
     setIsVisible((prev) => !prev);
@@ -63,6 +76,7 @@ function App() {
       setFoundProducts(products);
       changeVisibilityPopUp();
       setProductToSearch("");
+      setLastSearchedItem(productToSearch)
     } catch (error) {
       console.log(error);
       return;
@@ -79,7 +93,7 @@ function App() {
 
   if (!loading) {
     return (
-      <ProductProvider value={{refresher: changeProductsWereChanged}}>
+      <ProductProvider value={{refresher: changeProductsWereChanged, reloadSearchPopup: reloadSearchPopup}}>
         
       <div className="flex min-h-dvh flex-col mx-5">
         <header className="min-w-full flex flex-col items-center">

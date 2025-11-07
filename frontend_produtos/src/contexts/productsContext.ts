@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 
 interface ProductsContextType{
   refresher: ()=> void
+  reloadSearchPopup: ()=> void
 }
 const ProductContext = createContext<ProductsContextType| undefined>(undefined)
 

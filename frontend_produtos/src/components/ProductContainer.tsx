@@ -8,7 +8,7 @@ import { useProductContext } from "../contexts/productsContext";
 
 export default function ProductContainer({ name, onStock, id }: ProductType) {
   const [isEditing, setIsEditing] = useState(false);
-  const { refresher } = useProductContext();
+  const { refresher, reloadSearchPopup } = useProductContext();
   const deleteSingleOne = async () => {
     await deleteProduct(id);
     refresher();
@@ -17,7 +17,8 @@ export default function ProductContainer({ name, onStock, id }: ProductType) {
 
   useEffect(() => {
     refresher();
-  }, [isEditing, refresher]);
+    reloadSearchPopup()
+  }, [isEditing, refresher, reloadSearchPopup]);
 
   return (
     <div className="flex min-w-full justify-between flex-col bg-blue-200/30 rounded-sm p-2">
