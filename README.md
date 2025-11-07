@@ -142,17 +142,6 @@ A aplicação estará disponível em:
 * ✅ Integração com Prisma funcionando
 * ✅ CRUD básico implementado no backend
 * 🧩 Frontend simples para visualização dos produtos
-* 🔄 Projeto ainda em desenvolvimento (melhorias e novas features virão)
-
----
-
-## 📚 Próximos Passos
-
-* [ ] Melhorar interface e feedback visual
-* [ ] Adicionar validações e tratamento de erros
-* [ ] Implementar autenticação simples
-* [ ] Criar página de cadastro e edição de produtos no frontend
-
 ---
 
 ## 💬 Sobre o Projeto
