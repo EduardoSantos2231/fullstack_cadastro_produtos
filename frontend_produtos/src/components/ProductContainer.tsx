@@ -12,12 +12,13 @@ export default function ProductContainer({ name, onStock, id }: ProductType) {
   const deleteSingleOne = async () => {
     await deleteProduct(id);
     refresher();
+    reloadSearchPopup();
   };
   const changeIsEditing = () => setIsEditing((prev) => !prev);
 
   useEffect(() => {
     refresher();
-    reloadSearchPopup()
+    reloadSearchPopup();
   }, [isEditing, refresher, reloadSearchPopup]);
 
   return (

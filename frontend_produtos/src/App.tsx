@@ -15,13 +15,13 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<undefined | Error>(undefined);
   const [productToSearch, setProductToSearch] = useState("");
-  const [lastSearchedItem, setLastSearchedItem] = useState('')
+  const [lastSearchedItem, setLastSearchedItem] = useState("");
   const [foundProducts, setFoundProducts] = useState<ProductType[]>([]);
   const [isVisible, setIsVisible] = useState(false);
   const [productName, setProductName] = useState("");
   const [onStock, setOnStock] = useState(0);
-  const [productsWereChanged, setProductsWereChanged] = useState(false)
-  
+  const [productsWereChanged, setProductsWereChanged] = useState(false);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -29,28 +29,28 @@ function App() {
         setProducts(response);
       } catch (error) {
         setError(new Error("Algo deu errado..."));
-        console.log(error)
+        console.log(error);
       } finally {
         setLoading(false);
       }
     };
     fetchProducts();
   }, [productsWereChanged]);
-  
-  const changeProductsWereChanged = useCallback(()=>{
-    setProductsWereChanged((prev)=> !prev)
-  }, [])
-  
+
+  const changeProductsWereChanged = useCallback(() => {
+    setProductsWereChanged((prev) => !prev);
+  }, []);
+
   const reloadSearchPopup = useCallback(async () => {
-      if (isVisible && lastSearchedItem) {
-          try {
-              const products = await getProductUsingName(lastSearchedItem);
-              setFoundProducts(products); 
-              console.log("Popup de busca recarregado com sucesso!");
-          } catch (error) {
-              console.error("Erro ao recarregar popup de busca:", error);
-          }
+    if (isVisible && lastSearchedItem) {
+      try {
+        const products = await getProductUsingName(lastSearchedItem);
+        setFoundProducts(products);
+        console.log("Popup de busca recarregado com sucesso!");
+      } catch (error) {
+        console.error("Erro ao recarregar popup de busca:", error);
       }
+    }
   }, [isVisible, lastSearchedItem]);
 
   const changeVisibilityPopUp = () => {
@@ -66,7 +66,7 @@ function App() {
     });
     setProductName("");
     setOnStock(1);
-    changeProductsWereChanged()
+    changeProductsWereChanged();
   };
 
   const searchForProduct = async () => {
@@ -76,7 +76,7 @@ function App() {
       setFoundProducts(products);
       changeVisibilityPopUp();
       setProductToSearch("");
-      setLastSearchedItem(productToSearch)
+      setLastSearchedItem(productToSearch);
     } catch (error) {
       console.log(error);
       return;
@@ -93,75 +93,79 @@ function App() {
 
   if (!loading) {
     return (
-      <ProductProvider value={{refresher: changeProductsWereChanged, reloadSearchPopup: reloadSearchPopup}}>
-        
-      <div className="flex min-h-dvh flex-col mx-5">
-        <header className="min-w-full flex flex-col items-center">
-          <h1 className="my-4 bg-linear-to-r text-3xl font-semibold">
-            Produtos
-          </h1>
+      <ProductProvider
+        value={{
+          refresher: changeProductsWereChanged,
+          reloadSearchPopup: reloadSearchPopup,
+        }}
+      >
+        <div className="flex min-h-dvh flex-col mx-5">
+          <header className="min-w-full flex flex-col items-center">
+            <h1 className="my-4 bg-linear-to-r text-3xl font-semibold">
+              Produtos
+            </h1>
 
-          <Popup
-            isVisible={isVisible}
-            onClose={changeVisibilityPopUp}
-            info={foundProducts}
-          />
-          <span className="justify-between flex items-center my-4">
-            <input
-              value={productToSearch}
-              onChange={(e) => setProductToSearch(e.target.value)}
-              type="search"
-              placeholder="Informe um nome"
-              className="border p-2 rounded-l-lg"
+            <Popup
+              isVisible={isVisible}
+              onClose={changeVisibilityPopUp}
+              info={foundProducts}
             />
-            <button
-              onClick={searchForProduct}
-              className="bg-blue-200/50 p-3 text-lg cursor-pointer rounded-r-sm flex items-center gap-1"
-            >
-               <GoSearch />
-            </button>
-          </span>
-        </header>
-
-        <main className="flex justify-center  flex-col gap-3">
-          <div className="flex flex-row gap-2">
-            <input
-              value={productName}
-              onChange={(e) => setProductName(e.target.value)}
-              type="text"
-              className="border p-1 max-w-30 rounded-sm"
-              placeholder="Seu item"
-            />
-
-            <input
-              type="number"
-              value={onStock}
-              min={1}
-              onChange={(e) => setOnStock(Number(e.target.value))}
-              className="border p-1 max-w-30 rounded-sm"
-              placeholder="Quantidade"
-            />
-
-            <button
-              onClick={create}
-              className="p-2 bg-green-500/30 cursor-pointer rounded-sm hover:scale-110 duration-200 transition"
-            >
-              Criar
-            </button>
-          </div>
-
-          <div className="flex flex-col gap-4">
-            {products.map((item) => (
-              <ProductContainer
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                onStock={item.onStock}
+            <span className="justify-between flex items-center my-4">
+              <input
+                value={productToSearch}
+                onChange={(e) => setProductToSearch(e.target.value)}
+                type="search"
+                placeholder="Informe um nome"
+                className="border p-2 rounded-l-lg"
               />
-            ))}
-          </div>
-        </main>
-      </div>
+              <button
+                onClick={searchForProduct}
+                className="bg-blue-200/50 p-3 text-lg cursor-pointer rounded-r-sm flex items-center gap-1"
+              >
+                <GoSearch />
+              </button>
+            </span>
+          </header>
+
+          <main className="flex justify-center  flex-col gap-3">
+            <div className="flex flex-row gap-2">
+              <input
+                value={productName}
+                onChange={(e) => setProductName(e.target.value)}
+                type="text"
+                className="border p-1 max-w-30 rounded-sm"
+                placeholder="Seu item"
+              />
+
+              <input
+                type="number"
+                value={onStock}
+                min={1}
+                onChange={(e) => setOnStock(Number(e.target.value))}
+                className="border p-1 max-w-30 rounded-sm"
+                placeholder="Quantidade"
+              />
+
+              <button
+                onClick={create}
+                className="p-2 bg-green-500/30 cursor-pointer rounded-sm hover:scale-110 duration-200 transition"
+              >
+                Criar
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              {products.map((item) => (
+                <ProductContainer
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  onStock={item.onStock}
+                />
+              ))}
+            </div>
+          </main>
+        </div>
       </ProductProvider>
     );
   }

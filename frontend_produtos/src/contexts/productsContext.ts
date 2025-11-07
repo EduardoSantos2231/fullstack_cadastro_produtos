@@ -1,19 +1,23 @@
 import { createContext, useContext } from "react";
 
-interface ProductsContextType{
-  refresher: ()=> void
-  reloadSearchPopup: ()=> void
+interface ProductsContextType {
+  refresher: () => void;
+  reloadSearchPopup: () => void;
 }
-const ProductContext = createContext<ProductsContextType| undefined>(undefined)
+const ProductContext = createContext<ProductsContextType | undefined>(
+  undefined,
+);
 
-const ProductProvider = ProductContext.Provider
+const ProductProvider = ProductContext.Provider;
 
-export {ProductProvider}
+export { ProductProvider };
 
-export function useProductContext (){
-  const context = useContext(ProductContext)
-  if (context===undefined){
-    throw new Error('useProductContext deve ser usado dentro de um ProductProvider');
+export function useProductContext() {
+  const context = useContext(ProductContext);
+  if (context === undefined) {
+    throw new Error(
+      "useProductContext deve ser usado dentro de um ProductProvider",
+    );
   }
-  return context
+  return context;
 }
