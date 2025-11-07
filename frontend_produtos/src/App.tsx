@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type ProductType from "./types/ProductsType";
 import ProductContainer from "./components/ProductContainer";
 import { GoSearch } from "react-icons/go";
@@ -36,9 +36,9 @@ function App() {
     fetchProducts();
   }, [productsWereChanged]);
   
-  const changeProductsWereChanged =()=>{
+  const changeProductsWereChanged = useCallback(()=>{
     setProductsWereChanged((prev)=> !prev)
-  }
+  }, [])
 
   const changeVisibilityPopUp = () => {
     setIsVisible((prev) => !prev);
