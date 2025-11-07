@@ -20,7 +20,7 @@ export default function EditPopup({ onClose, product, isVisible }: EditPopup) {
   return (
     <div className="bg-black/90 inset-0 absolute">
       <div className="z-10 flex justify-center items-center">
-        <div className=" bg-blue-300 my-10 flex flex-col p-5 gap-3">
+        <div className=" bg-white my-10 flex flex-col p-5 gap-3">
           <input
             value={newName}
             onChange={(e) => setNewName(e.target.value)}

@@ -6,9 +6,12 @@ export default function Popup({ isVisible, onClose, info }: PopUpType) {
   if (!info || info.length === 0) {
     return (
       <div className="min-w-full min-h-full bg-black/85 z-10 fixed">
-        <div className="flex justify-center items-center flex-col bg-white p-7">
-          <div className="">Produto não encontrado</div>
-          <button onClick={onClose} className="bg-slate-400 p-2 rounded-sm">
+        <div className="flex justify-center items-center flex-col bg-white p-7 min-h-72">
+          <p className="font-bold p-2 text-xl">Produto não encontrado</p>
+          <button
+            onClick={onClose}
+            className="bg-red-300 p-2 rounded-sm cursor-pointer transition hover:scale-110 duration-200"
+          >
             close
           </button>
         </div>
