@@ -6,8 +6,16 @@
 Este é um projeto **Full Stack** desenvolvido com **TypeScript**, **React**, **Tailwind CSS**, **Express** e **Prisma ORM**.
 O objetivo principal é **estudar e praticar o desenvolvimento full stack**, integrando frontend e backend em uma aplicação simples de **cadastro de produtos**.
 
-> ⚠️ **Status do projeto:** Em desenvolvimento
-> Este projeto foi criado **para fins de estudo**, servindo como base para aprimorar conhecimentos sobre o ecossistema **TypeScript**, **React**, **Node.js** e **Prisma**.
+> ⚠️ Este projeto foi criado **para fins de estudo**, servindo como base para aprimorar conhecimentos sobre o ecossistema **TypeScript**, **React**, **Node.js** e **Prisma**.
+
+#### Visualização dos produtos:
+<img width="1919" height="619" alt="image" src="https://github.com/user-attachments/assets/a669ad72-1ecb-4319-bba7-69b432748e81" />
+
+#### Busca de produtos por nome:
+<img width="1919" height="962" alt="image" src="https://github.com/user-attachments/assets/da8ea5b9-3913-4513-bfb4-1dfff4b932f8" />
+
+#### Edição de produtos adicionados:
+<img width="1919" height="971" alt="image" src="https://github.com/user-attachments/assets/3e9e5447-6bac-4d63-90ef-8c6b8f2661b1" />
 
 ---
 
